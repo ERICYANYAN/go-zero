@@ -175,11 +175,12 @@ func (ng *engine) checkedMaxBytes(bytes int64) int64 {
 }
 
 func (ng *engine) checkedTimeout(timeout time.Duration) time.Duration {
+	if timeout > time.Hour {
+		return 0
+	}
+
 	if timeout > 0 {
 		return timeout
-	}
-	if timeout == -1 {
-		return 0
 	}
 
 	return time.Duration(ng.conf.Timeout) * time.Millisecond

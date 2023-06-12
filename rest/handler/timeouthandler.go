@@ -142,7 +142,7 @@ func (tw *timeoutWriter) Hijack() (net.Conn, *bufio.ReadWriter, error) {
 }
 
 // Header returns the underline temporary http.Header.
-func (tw *timeoutWriter) Header() http.Header { return tw.h }
+func (tw *timeoutWriter) Header() http.Header { return tw.w.Header() }
 
 // Push implements the Pusher interface.
 func (tw *timeoutWriter) Push(target string, opts *http.PushOptions) error {
