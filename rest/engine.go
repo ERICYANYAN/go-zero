@@ -178,6 +178,9 @@ func (ng *engine) checkedTimeout(timeout time.Duration) time.Duration {
 	if timeout > 0 {
 		return timeout
 	}
+	if timeout == -1 {
+		return 0
+	}
 
 	return time.Duration(ng.conf.Timeout) * time.Millisecond
 }
